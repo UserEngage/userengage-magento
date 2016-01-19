@@ -1,0 +1,10 @@
+<div id="userengage">
+  <form method="post" action="<?php echo $this->getUrl('*/*/post'); ?>">
+    <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+      <div class="logo"></div>
+      <div><label for="userengage_apikey">Your Api Key:</label><br>
+          <input type="text" class="input-text" name="userengage_apikey" id="userengage_apikey" value="<?php echo Mage::getStoreConfig('userengage/general/apikey'); ?>" /><input type="hidden" name="userengage_apiKey" id="userengage_apiKey" value="0"><br><p>Please enter your application key which has been sent to your email address.<br>The api key is a 64 letter and number key.</p><button type="submit">Save</button>
+        </div>
+    </form>
+  </div>
+</div>

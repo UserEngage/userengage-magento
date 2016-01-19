@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="2.0.2">
+	<default>
+        <reference name="head">
+			<action method="addCss">
+				<stylesheet>css/userengage.css</stylesheet>
+			</action>
+		</reference>
+	</default>
+    <userengage_adminhtml_userengage_index>
+        <reference name="content">
+            <block type="userengage/adminhtml_userengage" name="userengage" />
+        </reference>
+    </userengage_adminhtml_userengage_index>
+</layout>

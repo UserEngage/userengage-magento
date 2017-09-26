@@ -1,0 +1,64 @@
+<?php
+
+if ($_SESSION["addproduct"]) {
+?>
+<?php
+    $output = '<script type="text/javascript"  data-cfasync="false">';
+    $output .= 'jQuery(document).ready(function($) { ';
+    $output .= 'var timecheck =  setInterval(function() { if (typeof userengage == "function") { ';
+    $output .= "userengage('event.addToCart', {" .
+               "'id': '" . $_SESSION["productData"]["id"] . 
+               "','category': '" . $_SESSION["productData"]["category"] . 
+               "','name': '" . $_SESSION["productData"]["name"] . 
+               "','price': '" . $_SESSION["productData"]["price"] . 
+               "','quantity': '" . $_SESSION["productData"]["quantity"] . 
+               "','product_url': '" . $_SESSION["productData"]["product_url"] . 
+               "','image_url': '" . $_SESSION["productData"]["image_url"] . 
+               "' });";
+    $output .= ' clearInterval(timecheck);} },500);';
+    $output .= '}); </script>';
+    echo $output;
+?>
+<?php
+
+}
+unset($_SESSION["addproduct"]);
+unset($_SESSION["productData"]);
+if ($_SESSION["userRegistered"]) {
+?>
+<?php
+
+    $output = '<script type="text/javascript"  data-cfasync="false">';
+    $output .= 'jQuery(document).ready(function($) { ';
+    $output .= 'var timecheck =  setInterval(function() { if (typeof userengage == "function") { ';
+    $output .= "userengage('event.registration', {" .
+               "'id': '" . $_SESSION["userRegistered"]["Uid"] . 
+               "','fullname': '" . $_SESSION["userRegistered"]["name"] . 
+               "','email': '" . $_SESSION["userRegistered"]["email"] . 
+               "' });";
+    $output .= ' clearInterval(timecheck);} },500);';
+    $output .= '}); </script>';
+    echo $output;
+}
+?>
+<?php
+
+unset($_SESSION["userRegistered"]);
+if ($_SESSION["order"]) {
+    $orderId = $_SESSION["order"];
+    $order   = Mage::getModel('sales/order')->load($orderId);
+    $attribs = "'id': '" . $order->getIncrementId() . "'," . 
+               "'shipping': '" . $order->getShippingAmount() . "'," .
+               "'tax': '" . $order->getTaxAmount() . "'," .
+               "'coupon': '" . $order->getCouponCode() . "'," .
+               "'revenue': '" . $order->getGrandTotal() . "'";
+    $output = '<script type="text/javascript"  data-cfasync="false">';
+    $output .= 'jQuery(document).ready(function($) { ';
+    $output .= 'var timecheck =  setInterval(function() { ' . 'if (typeof userengage == "function") { ';
+    $output .= "userengage('event.purchase', {" . $attribs . "});";
+    $output .= ' clearInterval(timecheck); } },500);';
+    $output .= '}); </script>';
+    echo $output;
+}
+unset($_SESSION["order"]);
+?>

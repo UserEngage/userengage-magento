@@ -1,12 +1,17 @@
 <?xml version="1.0"?>
 <layout version="1.0.0">
     <default>
-		<reference name="head">
-			<block type="userengage/userengage" name="head.userengage.plugin" >
-				<action method="setTemplate">
-					<template>userengage/plugin.phtml</template>
-				</action>
-			</block>
+        <reference name="head">
+            <block type="userengage/userengage" name="head.userengage.plugin" >
+                <action method="setTemplate">
+                    <template>userengage/plugin.phtml</template>
+                </action>
+            </block>
+            <block type="userengage/userengage" name="head.userengage.script" >
+                <action method="setTemplate">
+                    <template>userengage/script.phtml</template>
+                </action>
+            </block>
         </reference>
     </default>
 </layout>
